@@ -10,7 +10,7 @@ const app = express();
 const port = 7777;
 
 app.get('/', (req, res) => {
-  res.send('Hello Express!');
+  res.send('Heroku server');
 });
 
 const server = http.createServer(app);
