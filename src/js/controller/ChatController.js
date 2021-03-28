@@ -19,7 +19,7 @@ export class ChatController {
     }
 
     async addChatData(message, author) {
-        await this.chatView.addChatData(message, author);
-        this.chatModel.addChatData(message, author);
+        await this.chatModel.addChatData(message, author);
+        this.chatView.addChatData(message, author);
     }
 }
