@@ -18,7 +18,7 @@ wss.on('connection', function connection(ws) {
     const event = JSON.parse(json);
 
     app.get('/', (req, res) => {
-      res.send(json);
+      res.send('===Heroku server===');
     });
 
     switch (event.type) {
