@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/js/app.js",
   "scripts": {
+    "start-fe": "webpack serve --mode development",
     "start": "node express.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix"

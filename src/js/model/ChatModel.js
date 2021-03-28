@@ -4,7 +4,7 @@
 /* eslint-disable import/prefer-default-export */
 export class ChatModel {
     async addChatData(message, author) {
-        const socket = new WebSocket('ws://localhost:7777');
+        const socket = new WebSocket('ws://andreychatserve.herokuapp.com/');
 
         socket.onopen = function () {
             const sendMessageEvent = {
