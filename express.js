@@ -9,10 +9,6 @@ const WebSocket = require('ws');
 const app = express();
 const port = process.env.PORT || 7777;
 
-app.get('/', (req, res) => {
-  res.send('===Heroku server===');
-});
-
 const server = http.createServer(app);
 
 const wss = new WebSocket.Server({ server });
@@ -20,6 +16,10 @@ const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(json) {
     const event = JSON.parse(json);
+
+    app.get('/', (req, res) => {
+      res.send(json);
+    });
 
     switch (event.type) {
       case 'SEND_MESSAGE': {
