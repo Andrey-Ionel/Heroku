@@ -5,7 +5,7 @@ import $ from 'jquery';
 export class ChatView {
     constructor(config) {
         this.config = config;
-        this.$view = this.generateChat();
+        this.$viewChat = this.generateChat();
         this.renderChatMessage();
     }
 

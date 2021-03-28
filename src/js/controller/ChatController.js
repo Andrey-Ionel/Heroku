@@ -15,7 +15,7 @@ export class ChatController {
 
         this.chatModel = new ChatModel();
 
-        $app.append(this.chatView.$view);
+        $app.append(this.chatView.$viewChat);
     }
 
     async addChatData(message, author) {
