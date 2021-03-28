@@ -7,7 +7,7 @@ const http = require('http');
 const WebSocket = require('ws');
 
 const app = express();
-const port = 7777;
+const port = process.env.PORT || 7777;
 
 app.get('/', (req, res) => {
   res.send('Heroku server');
