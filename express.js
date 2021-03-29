@@ -7,7 +7,7 @@ const http = require('http');
 const WebSocket = require('ws');
 
 const app = express();
-const port = process.env.PORT || 7777;
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/dist/index.html`);
