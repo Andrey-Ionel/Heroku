@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
+  res.sendFile(__dirname + '/dist');
 });
 
 const server = http.createServer(app);
