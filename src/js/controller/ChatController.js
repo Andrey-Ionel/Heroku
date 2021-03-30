@@ -10,16 +10,29 @@ export class ChatController {
         const $app = $('.app');
 
         this.chatView = new ChatView({
-            addChatData: (message, author) => this.addChatData(message, author),
+            sendChatMessage: (message, author) => this.sendChatMessage(message, author),
         });
 
-        this.chatModel = new ChatModel();
+        this.chatModel = new ChatModel({
+            getChatData: (message, author) => this.getChatData(message, author),
+        });
 
         $app.append(this.chatView.$viewChat);
     }
 
-    async addChatData(message, author) {
-        await this.chatModel.addChatData(message, author);
-        this.chatView.addChatData(message, author);
+    async getChatData(message, author) {
+        this.chatView.renderChatMessage(message, author);
+    }
+
+    sendChatMessage(message, author) {
+        const sendMessageEvent = {
+            type: 'SEND_MESSAGE',
+            payload: {
+                message: `${message}`,
+                author: `${author}`,
+            },
+        };
+        const json = JSON.stringify(sendMessageEvent);
+        this.chatModel.socket.send(json);
     }
 }

@@ -20,17 +20,6 @@ export class ChatView {
         `).click((e) => this.onClickChatButton(e));
     }
 
-    addChatData(message, author) {
-        const currentChatInputValue = $('#input-message').val();
-        const initialChatInputValue = $('#input-message').val('');
-        const currentAuthorInputValue = $('.js-input-author').val();
-
-        if (currentChatInputValue && currentAuthorInputValue) {
-            this.renderChatMessage(message, author);
-        }
-        return initialChatInputValue;
-    }
-
     renderChatMessage(message, author) {
         this.$container = $('.js-add-message');
         this.$container.append(`<p class="message-text"><span class="message-author">${author}: </span>${message}</p>`);
@@ -41,7 +30,8 @@ export class ChatView {
         if (chatButton) {
             const currentChatInputValue = $('#input-message').val();
             const currentAuthorInputValue = $('.js-input-author').val();
-            this.config.addChatData(currentChatInputValue, currentAuthorInputValue);
+            this.config.sendChatMessage(currentChatInputValue, currentAuthorInputValue);
+            $('#input-message').val('');
         }
     }
 }

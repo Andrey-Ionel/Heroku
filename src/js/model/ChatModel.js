@@ -3,32 +3,22 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable import/prefer-default-export */
 export class ChatModel {
-    async addChatData(message, author) {
-        const socket = new WebSocket('ws://andreychatserve.herokuapp.com/');
+    constructor(config) {
+        this.config = config;
+        this.socket = new WebSocket('ws://andreychatserve.herokuapp.com/');
 
-        socket.onopen = function () {
-            const sendMessageEvent = {
-                type: 'SEND_MESSAGE',
-                payload: {
-                    author: `${author}`,
-                    message: `${message}`,
-                },
-            };
-
-            const json = JSON.stringify(sendMessageEvent);
-
-            socket.send(json);
+        this.socket.onmessage = (event) => {
+            const newMessage = JSON.parse(event.data);
+            this.author = newMessage.payload.author;
+            this.message = newMessage.payload.message;
+            this.config.getChatData(this.message, this.author);
         };
 
-        socket.onmessage = (event) => {
-            console.log('onmessage', event);
-        };
-
-        socket.onerror = (event) => {
+        this.socket.onerror = (event) => {
             console.log('onerror', event);
         };
 
-        socket.onclose = (event) => {
+        this.socket.onclose = (event) => {
             console.log('onclose', event);
         };
     }
