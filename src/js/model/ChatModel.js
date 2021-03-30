@@ -5,7 +5,7 @@
 export class ChatModel {
     constructor(config) {
         this.config = config;
-        this.socket = new WebSocket('ws://andreychatserve.herokuapp.com/');
+        this.socket = new WebSocket('wss://andreychatserve.herokuapp.com/');
 
         this.socket.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
